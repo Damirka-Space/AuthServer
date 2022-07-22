@@ -1,0 +1,17 @@
+html, body{
+    background-image: url('src/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
+
+
+.btn-apple {
+    background-color: #e1e1e1;
+}
+
+.btn-apple:hover {
+    background-color: #000000;
+}
+
