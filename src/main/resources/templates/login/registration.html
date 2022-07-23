@@ -21,7 +21,7 @@
                   <form th:action="@{/registration}" method="post">
 
                     <div th:if="${param.error}">
-                      <p class="mb-2" th:text="${message}"/>
+                      <p class="mb-2 text-danger" th:text="${message}"/>
 			        </div>
                     
                     <div class="form-outline form-white mb-4">
