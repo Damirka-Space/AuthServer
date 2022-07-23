@@ -4,6 +4,8 @@ import com.damirka.authserver.builders.UserFactory;
 import com.damirka.authserver.dtos.UserRegistrationDto;
 import com.damirka.authserver.entities.RoleEnum;
 import com.damirka.authserver.entities.UserEntity;
+import com.damirka.authserver.exceptions.user.UserAlreadyExistException;
+import com.damirka.authserver.exceptions.user.UserException;
 import com.damirka.authserver.repositories.RoleRepository;
 import com.damirka.authserver.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.annotation.PostConstruct;
+import java.text.ParseException;
 import java.util.Collections;
 import java.util.Objects;
 
@@ -35,12 +38,12 @@ public class UserService {
         return userRepository.findByUsername(username);
     }
 
-    public void registerUser(UserRegistrationDto user) throws Exception {
+    public void registerUser(UserRegistrationDto user) throws UserException, ParseException {
 
         UserEntity newUser = getUserByUsername(user.getUsername());
 
         if(Objects.nonNull(newUser))
-            throw new Exception("User with this username already registered");
+            throw new UserAlreadyExistException();
 
         newUser = UserFactory.userFromUserDto(user);
 

@@ -1,6 +1,8 @@
 package com.damirka.authserver.controllers;
 
 import com.damirka.authserver.dtos.UserRegistrationDto;
+import com.damirka.authserver.exceptions.user.UserException;
+import com.damirka.authserver.exceptions.user.UserExceptionId;
 import com.damirka.authserver.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.text.ParseException;
 import java.util.Objects;
 
 @Controller()
@@ -41,9 +44,13 @@ public class AuthPageController {
 
 
     @GetMapping("/registration")
-    public String registationPage(@RequestParam(name = "error", required = false) String error, Model model) {
-        if(Objects.nonNull(error))
-            model.addAttribute("param.error", error);
+    public String registationPage(@RequestParam(name = "error", required = false) Integer error, Model model) {
+        if(Objects.nonNull(error)) {
+            if(error >= 0 && error < UserExceptionId.values().length)
+                model.addAttribute("message", UserExceptionId.values()[error].toString());
+            else
+                model.addAttribute("message", "Unknown error");
+        }
         return "login/registration";
     }
 
@@ -51,8 +58,10 @@ public class AuthPageController {
     public String registerUser(UserRegistrationDto user) {
         try {
             userService.registerUser(user);
-        } catch (Exception e) {
-            return "login/registration?error=" + e.getMessage();
+        } catch (UserException e) {
+            return "redirect:/registration?error=" + e.getId();
+        } catch (ParseException pe) {
+            // TODO: redirect to 500 page
         }
 
         return "login/login";
