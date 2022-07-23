@@ -25,6 +25,7 @@ public class UserEntity {
     private String firstname;
     private String lastname;
     private String gender;
+    private String phone;
 
     private Date dateOfBirth;
     @CreatedDate

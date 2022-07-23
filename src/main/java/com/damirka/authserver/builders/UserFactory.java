@@ -21,6 +21,7 @@ public abstract class UserFactory {
         newUser.setFirstname(user.getFirstname());
         newUser.setLastname(user.getLastname());
         newUser.setGender(user.getGender());
+        newUser.setPhone(user.getPhone());
 
         Date birthday = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).parse(user.getBirthday());
         newUser.setDateOfBirth(birthday);

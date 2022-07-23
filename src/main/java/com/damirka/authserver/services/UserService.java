@@ -48,6 +48,8 @@ public class UserService {
 
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
 
+        newUser.setPhone(passwordEncoder.encode(newUser.getPhone()));
+
         userRepository.save(newUser);
     }
 
