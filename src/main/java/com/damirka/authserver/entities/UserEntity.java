@@ -19,7 +19,7 @@ public class UserEntity {
     private String username;
     @NonNull
     private String password;
-    @NonNull
+
     private String email;
 
     private String firstname;

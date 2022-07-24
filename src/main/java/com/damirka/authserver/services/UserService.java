@@ -1,6 +1,7 @@
 package com.damirka.authserver.services;
 
 import com.damirka.authserver.builders.UserFactory;
+import com.damirka.authserver.config.DefaultSecurityConfig;
 import com.damirka.authserver.dtos.UserRegistrationDto;
 import com.damirka.authserver.entities.RoleEnum;
 import com.damirka.authserver.entities.UserEntity;
@@ -9,12 +10,9 @@ import com.damirka.authserver.exceptions.user.UserException;
 import com.damirka.authserver.repositories.RoleRepository;
 import com.damirka.authserver.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.annotation.PostConstruct;
 import java.text.ParseException;
 import java.util.Collections;
 import java.util.Objects;
@@ -28,10 +26,10 @@ public class UserService {
 
 
     @Autowired
-    UserService(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder passwordEncoder) {
+    UserService(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
-        this.passwordEncoder = passwordEncoder;
+        this.passwordEncoder = DefaultSecurityConfig.passwordEncoder();
     }
 
     public UserEntity getUserByUsername(String username) {
@@ -51,7 +49,8 @@ public class UserService {
 
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
 
-        newUser.setPhone(passwordEncoder.encode(newUser.getPhone()));
+        if(Objects.nonNull(newUser.getPhone()))
+            newUser.setPhone(passwordEncoder.encode(newUser.getPhone()));
 
         userRepository.save(newUser);
     }

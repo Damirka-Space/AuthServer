@@ -5,10 +5,7 @@ import com.damirka.authserver.entities.UserEntity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.Locale;
+import java.util.*;
 
 public abstract class UserFactory {
 
@@ -23,8 +20,10 @@ public abstract class UserFactory {
         newUser.setGender(user.getGender());
         newUser.setPhone(user.getPhone());
 
-        Date birthday = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).parse(user.getBirthday());
-        newUser.setDateOfBirth(birthday);
+        if(Objects.nonNull(user.getBirthday())) {
+            Date birthday = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).parse(user.getBirthday());
+            newUser.setDateOfBirth(birthday);
+        }
 
         Date created = new Date();
         newUser.setCreated(created);

@@ -33,6 +33,5 @@ class StartUpService {
                 roleRepository.save(newRole);
             }
         }
-
     }
 }
