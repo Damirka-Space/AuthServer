@@ -53,8 +53,8 @@ public class AuthorizationServerConfig {
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
                 .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
                 .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
-                .redirectUri("http://127.0.0.1:8090/login/oauth2/code/auth-server")
-                .redirectUri("http://127.0.0.1:8090/authorized")
+                .redirectUri("http://130.61.79.90:8090/login/oauth2/code/auth-server")
+                .redirectUri("http://130.61.79.90:8090/authorized")
                 .scope(OidcScopes.OPENID)
                 .scope(OidcScopes.PROFILE)
                 .clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
@@ -76,6 +76,6 @@ public class AuthorizationServerConfig {
 
     @Bean
     public ProviderSettings providerSettings() {
-        return ProviderSettings.builder().issuer("http://localhost:9000").build();
+        return ProviderSettings.builder().issuer("http://37.150.110.150:9000").build();
     }
 }
