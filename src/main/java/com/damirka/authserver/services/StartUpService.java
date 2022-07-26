@@ -17,7 +17,7 @@ class StartUpService {
     private final RoleRepository roleRepository;
 
     @Autowired
-    private StartUpService(UserRepository userRepository, RoleRepository roleRepository) {
+    public StartUpService(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
     }

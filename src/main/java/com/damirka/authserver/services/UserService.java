@@ -26,7 +26,7 @@ public class UserService {
 
 
     @Autowired
-    UserService(UserRepository userRepository, RoleRepository roleRepository) {
+    public  UserService(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = DefaultSecurityConfig.passwordEncoder();
