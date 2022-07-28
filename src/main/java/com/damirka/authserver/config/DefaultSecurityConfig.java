@@ -1,5 +1,6 @@
 package com.damirka.authserver.config;
 
+import com.damirka.authserver.entities.RoleEnum;
 import com.damirka.authserver.security.DefaultUserDetailsService;
 import com.damirka.authserver.security.oauth2.CustomOAuth2UserService;
 import com.damirka.authserver.security.oauth2.CustomOidcUserService;
@@ -36,6 +37,7 @@ public class DefaultSecurityConfig {
         http.authorizeRequests(authorizeRequests -> {
                     authorizeRequests
                             .antMatchers("/login/**", "/registration/**", "/logout").permitAll()
+                            .antMatchers("/admin/**").hasAuthority(RoleEnum.ADMIN.toString())
                             .anyRequest().authenticated();
                 }
                 ).userDetailsService(userDetailsService)

@@ -54,6 +54,8 @@ public class OAuth2AuthenticationSuccessHandler extends SavedRequestAwareAuthent
             newUser.setGender(oidcUser.getGender());
         }
 
+        newUser.setPassword(alphaNumericString(30));
+
         try {
             userService.registerUser(newUser);
         } catch (UserException | ParseException e) {

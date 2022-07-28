@@ -3,6 +3,7 @@ package com.damirka.authserver.services;
 import com.damirka.authserver.builders.UserFactory;
 import com.damirka.authserver.config.DefaultSecurityConfig;
 import com.damirka.authserver.dtos.UserRegistrationDto;
+import com.damirka.authserver.entities.RoleEntity;
 import com.damirka.authserver.entities.RoleEnum;
 import com.damirka.authserver.entities.UserEntity;
 import com.damirka.authserver.exceptions.user.UserAlreadyExistException;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -53,6 +55,16 @@ public class UserService {
             newUser.setPhone(passwordEncoder.encode(newUser.getPhone()));
 
         userRepository.save(newUser);
+    }
+
+    public void setAdmin(String username) {
+        UserEntity user = getUserByUsername(username);
+        if(Objects.nonNull(user)) {
+            List<RoleEntity> roles = user.getRoles();
+            roles.add(roleRepository.findByName(RoleEnum.ADMIN.name()));
+            user.setRoles(roles);
+            userRepository.save(user);
+        }
     }
 
 }
