@@ -18,9 +18,9 @@ import java.util.Objects;
 @Service
 class StartUpService {
 
-    @Value("admin.login")
+    @Value("${admin.login}")
     private String adminLogin;
-    @Value("admin.password")
+    @Value("${admin.password}")
     private String adminPassword;
 
     private final UserService userService;
