@@ -64,7 +64,7 @@ public class AuthPageController {
         } catch (UserException e) {
             return "redirect:/registration?error=" + e.getId();
         } catch (ParseException pe) {
-            // TODO: redirect to 500 page
+            return "redirect:/registration?error=" + UserExceptionId.BIRTHDAY_NOT_ENTERED.ordinal();
         }
 
         return "login/login";

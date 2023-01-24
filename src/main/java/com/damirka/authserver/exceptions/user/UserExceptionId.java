@@ -4,7 +4,8 @@ import java.util.Arrays;
 import java.util.Locale;
 
 public enum UserExceptionId {
-    USER_WITH_THIS_USERNAME_ALREADY_EXIST;
+    USER_WITH_THIS_USERNAME_ALREADY_EXIST,
+    BIRTHDAY_NOT_ENTERED;
 
 
     @Override
