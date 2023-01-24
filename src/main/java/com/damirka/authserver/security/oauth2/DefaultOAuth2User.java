@@ -34,14 +34,14 @@ public class DefaultOAuth2User implements OAuth2User {
     }
 
     public String getEmail() {
-        return oauth2User.<String>getAttribute("email");
+        return oauth2User.getAttribute("email");
     }
 
     public String getPhone() {
-        return oauth2User.<String>getAttribute("phone");
+        return oauth2User.getAttribute("phone");
     }
 
     public String getGender() {
-        return oauth2User.<String>getAttribute("gender");
+        return oauth2User.getAttribute("gender");
     }
 }

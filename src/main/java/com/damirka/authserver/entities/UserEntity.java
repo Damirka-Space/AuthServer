@@ -1,11 +1,11 @@
 package com.damirka.authserver.entities;
 
+import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.lang.NonNull;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 

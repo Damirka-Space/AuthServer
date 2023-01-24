@@ -7,11 +7,11 @@ import com.damirka.authserver.entities.RoleEnum;
 import com.damirka.authserver.exceptions.user.UserException;
 import com.damirka.authserver.repositories.RoleRepository;
 import com.damirka.authserver.repositories.UserRepository;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.text.ParseException;
 import java.util.Objects;
 

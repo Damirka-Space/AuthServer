@@ -1,6 +1,7 @@
 package com.damirka.authserver.services;
 
 import com.damirka.authserver.builders.UserFactory;
+import com.damirka.authserver.config.AuthorizationServerConfig;
 import com.damirka.authserver.config.DefaultSecurityConfig;
 import com.damirka.authserver.dtos.UserRegistrationDto;
 import com.damirka.authserver.entities.RoleEntity;
@@ -31,7 +32,7 @@ public class UserService {
     public  UserService(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
-        this.passwordEncoder = DefaultSecurityConfig.passwordEncoder();
+        this.passwordEncoder = AuthorizationServerConfig.passwordEncoder();
     }
 
     public UserEntity getUserByUsername(String username) {
