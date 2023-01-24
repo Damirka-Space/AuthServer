@@ -38,12 +38,12 @@ public class DefaultSecurityConfig {
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/login/**", "/registration/**", "/logout").permitAll()
                         .requestMatchers("/admin/**").hasAuthority(RoleEnum.ADMIN.toString())
 //                        .requestMatchers("/user/**").hasAuthority("SCOPE_user.profile")
                         .anyRequest().authenticated()
                 ).userDetailsService(userDetailsService)
-                .formLogin().loginPage("/auth/login")
+                .formLogin().loginPage("/login")
                 .and()
                 .oauth2Login().loginPage("/oauth2")
                 .userInfoEndpoint().userService(oauthUserService)
