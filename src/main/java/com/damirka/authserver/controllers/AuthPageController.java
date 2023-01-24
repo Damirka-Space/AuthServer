@@ -16,7 +16,7 @@ import java.security.Principal;
 import java.text.ParseException;
 import java.util.Objects;
 
-@Controller()
+@Controller(value = "/auth")
 public class AuthPageController {
 
     private UserService userService;
