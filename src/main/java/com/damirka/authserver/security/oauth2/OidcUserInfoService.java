@@ -20,6 +20,9 @@ public class OidcUserInfoService {
         String subject = username;
         String email = user.getEmail();
         String gender = user.getGender();
+        String firstname = user.getFirstname();
+        String lastname = user.getLastname();
+        Boolean blocked = user.getBlocked();
 
         String birthday = null;
         if(Objects.nonNull(user.getDateOfBirth()))
@@ -29,11 +32,15 @@ public class OidcUserInfoService {
 
         return OidcUserInfo.builder()
                 .subject(subject)
+                .nickname(username)
                 .email(email)
                 .gender(gender)
                 .birthdate(birthday)
                 .phoneNumber(phoneNumber)
                 .claim("roles", user.getRoles())
+                .claim("firstname", firstname)
+                .claim("lastname", lastname)
+                .claim("blocked", blocked)
                 .build();
 
     }
