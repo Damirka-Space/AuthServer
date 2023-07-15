@@ -6,9 +6,8 @@ import com.damirka.authserver.entities.RoleEntity;
 import com.damirka.authserver.entities.RoleEnum;
 import com.damirka.authserver.exceptions.user.UserException;
 import com.damirka.authserver.repositories.RoleRepository;
-import com.damirka.authserver.repositories.UserRepository;
 import jakarta.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +15,7 @@ import java.text.ParseException;
 import java.util.Objects;
 
 @Service
+@RequiredArgsConstructor
 class StartUpService {
 
     @Value("${admin.login}")
@@ -24,15 +24,7 @@ class StartUpService {
     private String adminPassword;
 
     private final UserService userService;
-    private final UserRepository userRepository;
     private final RoleRepository roleRepository;
-
-    @Autowired
-    public StartUpService(UserService userService, UserRepository userRepository, RoleRepository roleRepository) {
-        this.userService = userService;
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
-    }
 
     @PostConstruct
     private void startUp() {
